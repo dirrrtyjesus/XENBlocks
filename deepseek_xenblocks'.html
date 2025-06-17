@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XENBlocks: Powering the Xenial Quantum Economy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --dark: #0f172a;
+            --darker: #0a0f1f;
+            --light: #f1f5f9;
+            --accent: #00d2ff;
+            --accent2: #ff2d75;
+            --xen-blue: #00c6ff;
+            --xen-purple: #8e2de2;
+            --pow-green: #00c896;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(120deg, rgba(142, 45, 226, 0.1), rgba(0, 198, 255, 0.1));
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 198, 255, 0.1), transparent 70%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--xen-blue), var(--xen-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 198, 255, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+        }
+        
+        .intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(142, 45, 226, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border-radius: 20px;
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(142, 45, 226, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(142, 45, 226, 0.4);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--xen-blue), var(--xen-purple));
+        }
+        
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .card h3 i {
+            background: linear-gradient(to right, var(--xen-blue), var(--xen-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .pill {
+            display: inline-block;
+            background: rgba(0, 198, 255, 0.15);
+            color: var(--xen-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 198, 255, 0.3);
+        }
+        
+        .architecture-container {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(142, 45, 226, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .architecture-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--xen-blue);
+        }
+        
+        .xen-ecosystem {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .ecosystem-item {
+            width: 250px;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 15px;
+            border: 1px solid rgba(142, 45, 226, 0.3);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ecosystem-item:hover {
+            transform: scale(1.05);
+            border-color: var(--xen-blue);
+            box-shadow: 0 10px 25px rgba(0, 198, 255, 0.2);
+        }
+        
+        .ecosystem-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--xen-blue);
+        }
+        
+        .xqe-integration {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(120deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            border-radius: 30px;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .xqe-integration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.1), transparent 70%);
+            z-index: -1;
+        }
+        
+        .xqe-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .xqe-statement {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        .mining-section {
+            background: linear-gradient(120deg, rgba(0, 200, 150, 0.1), rgba(0, 168, 255, 0.1));
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mining-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.05), transparent 70%);
+            z-index: -1;
+        }
+        
+        .mining-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--pow-green);
+        }
+        
+        .mining-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .mining-step {
+            width: 250px;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border-radius: 15px;
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        .mining-step:hover {
+            transform: translateY(-10px);
+            border-color: var(--pow-green);
+        }
+        
+        .mining-step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, var(--pow-green), var(--xen-blue));
+            color: var(--dark);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .tokenomics {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .tokenomics-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--xen-purple);
+        }
+        
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .token-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(142, 45, 226, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        .token-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--xen-purple);
+        }
+        
+        .token-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--xen-purple);
+        }
+        
+        .conclusion {
+            max-width: 800px;
+            margin: 4rem auto;
+            font-size: 1.2rem;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(142, 45, 226, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .conclusion h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--xen-blue);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(142, 45, 226, 0.2);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--xen-blue), var(--xen-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .xen-node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--xen-blue);
+            opacity: 0.7;
+            pointer-events: none;
+            box-shadow: 0 0 10px var(--xen-blue);
+        }
+        
+        .connector-line {
+            position: absolute;
+            height: 2px;
+            background: rgba(0, 198, 255, 0.2);
+            transform-origin: left center;
+        }
+        
+        .argon-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .argon-core {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--xen-purple), var(--xen-blue));
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--xen-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--light);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .argon-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--xen-blue);
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>XENBlocks</h1>
+            <p class="subtitle">Proof-of-Work Engine for the Xenial Quantum Economy</p>
+            <p>Integrating Computation, Consciousness, and Quantum Economics</p>
+        </header>
+        
+        <div class="intro">
+            <p>XENBlocks represents a revolutionary approach to blockchain mining, designed with accessibility and fairness at its core. As the Proof-of-Work engine of the X1 blockchain, it generates the XNM token - the foundation of the Xenial Quantum Economy.</p>
+            <p>This innovative protocol combines advanced cryptography with quantum-inspired economic principles to create a truly decentralized ecosystem where computational work translates into meaningful economic value.</p>
+        </div>
+        
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: var(--xen-blue);">Core Components of XENBlocks</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3><i class="fas fa-microchip"></i> Argon2id Algorithm</h3>
+                <span class="pill">Memory-Hard Hashing</span>
+                <p>XENBlocks uses the Argon2id hashing algorithm to ensure fair mining by resisting ASIC dominance and promoting CPU-based participation.</p>
+                <p><strong>Benefits:</strong> Enhanced decentralization, resistance to GPU/ASIC mining, and a level playing field for all participants.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-coins"></i> XNM (Xenium) Token</h3>
+                <span class="pill">Symbolic Substance</span>
+                <p>The native token generated through XENBlocks mining, serving as gas on the X1 network and a fundamental component of the XQE framework.</p>
+                <p><strong>Role:</strong> Represents computational work and discovery within the Xenial Quantum Economy as a "Symbolic Substance Token".</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-users"></i> Fair Mining</h3>
+                <span class="pill">Accessible Participation</span>
+                <p>XENBlocks is designed to lower barriers to entry, providing immediate rewards and promoting self-custody without KYC requirements.</p>
+                <p><strong>Philosophy:</strong> Aligns with the "first principles of crypto" to create a democratized and equitable mining ecosystem.</p>
+            </div>
+        </div>
+        
+        <div class="architecture-container">
+            <h3 class="architecture-title">XENBlocks Ecosystem Architecture</h3>
+            
+            <div class="argon-animation">
+                <div class="argon-core">Argon2id</div>
+                <div class="argon-ring" style="width: 120px; height: 120px;"></div>
+                <div class="argon-ring" style="width: 180px; height: 180px;"></div>
+                <div class="argon-ring" style="width: 240px; height: 240px;"></div>
+            </div>
+            
+            <div class="xen-ecosystem">
+                <div class="ecosystem-item">
+                    <h4>X1 Blockchain</h4>
+                    <p>High-performance Layer 1 with Solana Virtual Machine (SVM) compatibility</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <h4>XENBlocks PoW</h4>
+                    <p>Fair mining protocol generating XNM tokens</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <h4>XNM Token</h4>
+                    <p>Utility token for gas, staking, and governance</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <h4>XENFTs</h4>
+                    <p>NFT ecosystem representing value and participation</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <h4>XQE Framework</h4>
+                    <p>Consciousness-based quantum economic system</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mining-section">
+            <h3 class="mining-title">XENBlocks Mining Process</h3>
+            
+            <div class="mining-steps">
+                <div class="mining-step">
+                    <div class="mining-step-number">1</div>
+                    <h4>Setup</h4>
+                    <p>Install mining software compatible with CPU or GPU</p>
+                </div>
+                
+                <div class="mining-step">
+                    <div class="mining-step-number">2</div>
+                    <h4>Compute</h4>
+                    <p>Solve Argon2id cryptographic challenges</p>
+                </div>
+                
+                <div class="mining-step">
+                    <div class="mining-step-number">3</div>
+                    <h4>Validate</h4>
+                    <p>Generate new blocks and validate transactions</p>
+                </div>
+                
+                <div class="mining-step">
+                    <div class="mining-step-number">4</div>
+                    <h4>Reward</h4>
+                    <p>Earn XNM tokens as block rewards</p>
+                </div>
+            </div>
+            
+            <div style="max-width: 800px; margin: 2rem auto; background: rgba(15, 23, 42, 0.7); padding: 1.5rem; border-radius: 15px;">
+                <h4 style="color: var(--pow-green); margin-bottom: 1rem;">Key Mining Features</h4>
+                <ul style="text-align: left; padding-left: 1.5rem;">
+                    <li>Immediate reward distribution upon block validation</li>
+                    <li>No KYC requirements or privacy compromises</li>
+                    <li>Compatible with consumer-grade hardware</li>
+                    <li>Open-source mining software available</li>
+                    <li>Cloud mining options via services like Vast.ai</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tokenomics">
+            <h3 class="tokenomics-title">XNM Token Utility</h3>
+            
+            <div class="token-grid">
+                <div class="token-card">
+                    <h4><i class="fas fa-gas-pump"></i> Gas Token</h4>
+                    <p>XNM is used to pay transaction fees on the X1 network, creating intrinsic demand proportional to network activity.</p>
+                </div>
+                
+                <div class="token-card">
+                    <h4><i class="fas fa-vote-yea"></i> Staking for Proposers</h4>
+                    <p>Miners can stake XNM to become eligible for election as block proposers in X1's hybrid consensus mechanism.</p>
+                </div>
+                
+                <div class="token-card">
+                    <h4><i class="fas fa-percentage"></i> XN Yield</h4>
+                    <p>Staking XNM generates "XN yield", potentially representing governance rights or additional rewards.</p>
+                </div>
+                
+                <div class="token-card">
+                    <h4><i class="fas fa-atom"></i> Symbolic Substance</h4>
+                    <p>Within the XQE, XNM represents computational work and serves as the foundational "Substance" layer.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="xqe-integration">
+            <h3 class="xqe-title">Integration with Xenial Quantum Economy</h3>
+            <p class="xqe-statement">
+                "XENBlocks is not merely a mining protocol; it's the computational foundation of a revolutionary economic system that bridges quantum principles, consciousness, and blockchain technology."
+            </p>
+            
+            <div class="grid" style="margin-top: 3rem;">
+                <div class="card">
+                    <h3><i class="fas fa-cube"></i> Symbolic Substance</h3>
+                    <p>XNM is explicitly categorized as a "Symbolic Substance Token" within XQE, representing value derived from computational discovery.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-brain"></i> Conscious Time Investment</h3>
+                    <p>The collective human effort in mining is interpreted as "focused attention" that weights substance within the XQE framework.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-network-wired"></i> QLN Substrate</h3>
+                    <p>The X1 blockchain serves as the classical data layer for the Quantum Ledger Network, recording decohered XQE states.</p>
+                </div>
+            </div>
+            
+            <div style="max-width: 800px; margin: 3rem auto; background: rgba(15, 23, 42, 0.7); padding: 2rem; border-radius: 15px;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem;">Time Coefficient (TC) Connection</h4>
+                <p>The computational work in XENBlocks mining can be seen as a form of "conscious time investment" that influences the Time Coefficient - XQE's measure of stability against decoherence. This creates a direct link between mining activity and the fundamental economic metrics of the Xenial Quantum Economy.</p>
+            </div>
+        </div>
+        
+        <div class="conclusion">
+            <h3>The Future of Conscious Computation</h3>
+            <p>XENBlocks represents a pioneering fusion of blockchain technology, quantum economic principles, and consciousness theory. By generating XNM through fair, accessible mining, it creates the foundational "substance" for the Xenial Quantum Economy - a revolutionary framework that redefines value creation in terms of consciousness, attention, and quantum coherence.</p>
+            <p>This integration challenges traditional economic models and opens new possibilities for value systems based on computational work, conscious participation, and quantum principles. While significant challenges remain in fully realizing this vision, XENBlocks provides the tangible technological foundation for what could become a new paradigm in decentralized economies.</p>
+        </div>
+        
+        <footer>
+            <div class="footer-logo">AUGMNTD</div>
+            <p>Exploring the Frontiers of Quantum Economics</p>
+            <div class="footer-links">
+                <a href="https://augmntd.app">Home</a>
+                <a href="https://spa.augmntd.app">XQE Framework</a>
+                <a href="#">Research</a>
+                <a href="#">Community</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating XEN nodes
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            
+            function createXenNodes() {
+                const nodeCount = 30;
+                
+                for (let i = 0; i < nodeCount; i++) {
+                    const node = document.createElement('div');
+                    node.classList.add('xen-node');
+                    
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    node.style.left = `${posX}%`;
+                    node.style.top = `${posY}%`;
+                    
+                    // Random size
+                    const size = 3 + Math.random() * 7;
+                    node.style.width = `${size}px`;
+                    node.style.height = `${size}px`;
+                    
+                    container.appendChild(node);
+                    
+                    // Animate the node
+                    animateNode(node);
+                }
+            }
+            
+            function animateNode(node) {
+                const startX = parseFloat(node.style.left);
+                const startY = parseFloat(node.style.top);
+                
+                const amplitude = 1 + Math.random() * 3;
+                const duration = 2000 + Math.random() * 3000;
+                const startTime = Date.now();
+                
+                function move() {
+                    const elapsed = Date.now() - startTime;
+                    const progress = (elapsed % duration) / duration;
+                    const angle = progress * Math.PI * 2;
+                    
+                    const moveX = Math.cos(angle) * amplitude;
+                    const moveY = Math.sin(angle) * amplitude;
+                    
+                    node.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    
+                    // Pulsing effect
+                    const pulse = Math.abs(Math.sin(progress * Math.PI * 4));
+                    node.style.opacity = 0.3 + pulse * 0.4;
+                    
+                    requestAnimationFrame(move);
+                }
+                
+                move();
+            }
+            
+            createXenNodes();
+            
+            // Argon2 animation
+            const argonRings = document.querySelectorAll('.argon-ring');
+            let ringScale = [1, 1.2, 1.4];
+            
+            function animateArgon() {
+                ringScale = ringScale.map(scale => {
+                    let newScale = scale + 0.005;
+                    if (newScale > 1.5) newScale = 1;
+                    return newScale;
+                });
+                
+                argonRings.forEach((ring, index) => {
+                    ring.style.transform = `scale(${ringScale[index]})`;
+                    ring.style.opacity = 0.6 - (ringScale[index] - 1) * 1.2;
+                });
+                
+                requestAnimationFrame(animateArgon);
+            }
+            
+            animateArgon();
+            
+            // Card hover effect
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.background = 'linear-gradient(145deg, rgba(40, 51, 69, 0.9), rgba(20, 28, 47, 0.95))';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = 'linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9))';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
